@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>PixelFactory.Editor.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PixelFactory.Common\PixelFactory.Common.csproj" />
+    <ProjectReference Include="..\PixelFactory.Engine.Core\PixelFactory.Engine.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="AssimpNet" />
+  </ItemGroup>
+
+</Project>

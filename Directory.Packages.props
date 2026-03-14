@@ -1,0 +1,27 @@
+<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ECS -->
+    <PackageVersion Include="Arch" Version="2.1.0" />
+
+    <!-- Graphics -->
+    <PackageVersion Include="Vortice.Direct3D11" Version="3.8.3" />
+    <PackageVersion Include="Vortice.Direct3D12" Version="3.8.3" />
+    <PackageVersion Include="Vortice.DXGI" Version="3.8.3" />
+    <PackageVersion Include="Vortice.D3DCompiler" Version="3.8.3" />
+
+    <!-- Editor -->
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageVersion Include="AssimpNet" Version="4.1.0" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.5" />
+    <PackageVersion Include="Spectre.Console" Version="0.54.0" />
+
+    <!-- Testing -->
+    <PackageVersion Include="xunit.v3" Version="3.2.2" />
+  </ItemGroup>
+
+</Project>

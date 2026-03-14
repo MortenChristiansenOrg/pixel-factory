@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PixelFactory.Common/PixelFactory.Common.csproj" />
+    <Project Path="src/PixelFactory.Engine.Core/PixelFactory.Engine.Core.csproj" />
+    <Project Path="src/PixelFactory.Engine.Graphics.D3D11/PixelFactory.Engine.Graphics.D3D11.csproj" />
+    <Project Path="src/PixelFactory.Engine.Graphics.D3D12/PixelFactory.Engine.Graphics.D3D12.csproj" />
+    <Project Path="src/PixelFactory.Editor.Core/PixelFactory.Editor.Core.csproj" />
+    <Project Path="src/PixelFactory.Editor.Cli/PixelFactory.Editor.Cli.csproj" />
+    <Project Path="src/PixelFactory.Editor.App/PixelFactory.Editor.App.csproj" />
+    <Project Path="src/PixelFactory.Sandbox/PixelFactory.Sandbox.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PixelFactory.Common.Tests/PixelFactory.Common.Tests.csproj" />
+    <Project Path="tests/PixelFactory.Engine.Core.Tests/PixelFactory.Engine.Core.Tests.csproj" />
+    <Project Path="tests/PixelFactory.Editor.Core.Tests/PixelFactory.Editor.Core.Tests.csproj" />
+    <Project Path="tests/PixelFactory.Editor.Cli.Tests/PixelFactory.Editor.Cli.Tests.csproj" />
+  </Folder>
+</Solution>
