@@ -34,8 +34,8 @@ public sealed partial class MainWindowViewModel : ObservableObject
     [ObservableProperty]
     private string _statusText = "Ready";
 
-    public event Action<MeshData>? MeshLoaded;
-    public event Action? MeshCleared;
+    [ObservableProperty]
+    private AssetViewModelBase? _currentAssetViewModel;
 
     public bool HasProject => _project is not null;
 
@@ -93,7 +93,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
         if (_project is null) return;
         _service.DeleteAsset(_project, asset.Id);
         ClearSelection();
-        MeshCleared?.Invoke();
+        CurrentAssetViewModel = null;
         SelectedAsset = null;
         RefreshTree();
         StatusText = $"Deleted: {asset.Name}";
@@ -113,6 +113,8 @@ public sealed partial class MainWindowViewModel : ObservableObject
         }
 
         SelectedAssetName = newName;
+        if (CurrentAssetViewModel is not null)
+            CurrentAssetViewModel.AssetName = newName;
         StatusText = $"Renamed → {newName}";
     }
 
@@ -123,28 +125,45 @@ public sealed partial class MainWindowViewModel : ObservableObject
         if (meta is null)
         {
             ClearSelection();
-            MeshCleared?.Invoke();
+            CurrentAssetViewModel = null;
             return;
         }
 
         SelectedAssetName = meta.Name;
         SelectedAssetType = meta.Type.ToString();
 
-        if (meta.Type == AssetType.Mesh && _project is not null)
+        CurrentAssetViewModel = meta.Type switch
+        {
+            AssetType.Mesh => CreateMeshViewModel(meta),
+            AssetType.Texture => new TextureAssetViewModel { AssetName = meta.Name },
+            AssetType.Material => new MaterialAssetViewModel { AssetName = meta.Name },
+            AssetType.Shader => new ShaderAssetViewModel { AssetName = meta.Name },
+            AssetType.Scene => new SceneAssetViewModel { AssetName = meta.Name },
+            AssetType.Audio => new AudioAssetViewModel { AssetName = meta.Name },
+            AssetType.Script => new ScriptAssetViewModel { AssetName = meta.Name },
+            _ => null,
+        };
+    }
+
+    private MeshAssetViewModel CreateMeshViewModel(AssetMeta meta)
+    {
+        var vm = new MeshAssetViewModel { AssetName = meta.Name };
+
+        if (_project is not null)
         {
             var meshData = _service.LoadMeshData(_project, meta.Id);
             if (meshData is not null)
             {
+                vm.Load(meshData);
                 SelectedAssetVertices = meshData.Vertices.Length.ToString();
                 SelectedAssetIndices = meshData.Indices.Length.ToString();
-                MeshLoaded?.Invoke(meshData);
-                return;
+                return vm;
             }
         }
 
         SelectedAssetVertices = "";
         SelectedAssetIndices = "";
-        MeshCleared?.Invoke();
+        return vm;
     }
 
     private void ClearSelection()

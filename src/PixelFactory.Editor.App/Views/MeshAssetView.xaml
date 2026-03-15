@@ -1,0 +1,12 @@
+<UserControl x:Class="PixelFactory.Editor.App.Views.MeshAssetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Border x:Name="ViewportBorder" Background="Black" />
+        <Border x:Name="ViewportOverlay" Background="Transparent"
+                MouseLeftButtonDown="Viewport_MouseLeftButtonDown"
+                MouseMove="Viewport_MouseMove"
+                MouseLeftButtonUp="Viewport_MouseLeftButtonUp"
+                SizeChanged="Viewport_SizeChanged" />
+    </Grid>
+</UserControl>

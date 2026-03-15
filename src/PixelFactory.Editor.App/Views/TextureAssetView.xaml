@@ -1,0 +1,28 @@
+<UserControl x:Class="PixelFactory.Editor.App.Views.TextureAssetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="{StaticResource PanelBackgroundBrush}">
+        <!-- Image preview area -->
+        <Border x:Name="PreviewArea" Background="Black" Margin="8">
+            <Grid>
+                <!-- Checkerboard background for transparency -->
+                <Rectangle Fill="{StaticResource PanelBackgroundBrush}" />
+
+                <!-- Placeholder shown when no image is loaded -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="No texture loaded"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="{Binding AssetName}"
+                               FontSize="11"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               HorizontalAlignment="Center"
+                               Margin="0,4,0,0" />
+                </StackPanel>
+
+                <!-- Future: Image control bound to texture data -->
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

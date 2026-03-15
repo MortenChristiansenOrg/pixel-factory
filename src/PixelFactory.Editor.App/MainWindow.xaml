@@ -67,14 +67,9 @@
                         <TreeView.ItemContainerStyle>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                                 <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                <EventSetter Event="Loaded" Handler="TreeViewItem_Loaded" />
                             </Style>
                         </TreeView.ItemContainerStyle>
-                        <TreeView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Rename..." Click="RenameAsset_Click" />
-                                <MenuItem Header="Delete" Click="DeleteAsset_Click" />
-                            </ContextMenu>
-                        </TreeView.ContextMenu>
                     </TreeView>
                 </DockPanel>
             </Border>
@@ -87,16 +82,9 @@
             <Border Grid.Column="2" Style="{StaticResource PanelBorder}">
                 <DockPanel>
                     <Border DockPanel.Dock="Top" Style="{StaticResource PanelHeaderBorder}">
-                        <TextBlock Text="Viewport" Style="{StaticResource PanelHeaderText}" />
+                        <TextBlock x:Name="ViewportHeader" Text="Viewport" Style="{StaticResource PanelHeaderText}" />
                     </Border>
-                    <Grid>
-                        <Border x:Name="ViewportBorder" Background="Black" />
-                        <Border x:Name="ViewportOverlay" Background="Transparent"
-                                MouseLeftButtonDown="Viewport_MouseLeftButtonDown"
-                                MouseMove="Viewport_MouseMove"
-                                MouseLeftButtonUp="Viewport_MouseLeftButtonUp"
-                                SizeChanged="Viewport_SizeChanged" />
-                    </Grid>
+                    <ContentControl x:Name="AssetViewHost" />
                 </DockPanel>
             </Border>
 
