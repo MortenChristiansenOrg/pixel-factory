@@ -1,0 +1,25 @@
+<UserControl x:Class="PixelFactory.Editor.App.Views.SceneAssetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="{StaticResource PanelBackgroundBrush}">
+        <!-- Scene viewport placeholder -->
+        <Border Background="Black" Margin="8" CornerRadius="4">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Scene viewport"
+                           FontSize="14"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding AssetName}"
+                           FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,0" />
+                <TextBlock Text="{Binding EntityCountLabel}"
+                           FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

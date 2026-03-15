@@ -1,0 +1,36 @@
+<UserControl x:Class="PixelFactory.Editor.App.Views.MaterialAssetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="{StaticResource PanelBackgroundBrush}">
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Material preview sphere placeholder -->
+            <Border Grid.Row="0" Height="200"
+                    Background="Black" CornerRadius="4" Margin="0,0,0,8">
+                <TextBlock Text="Material preview"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <!-- Material properties -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="{Binding AssetName}"
+                               FontSize="14"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               Margin="0,0,0,8" />
+
+                    <TextBlock Text="Shader" Style="{StaticResource PropertyLabel}" />
+                    <TextBlock Text="{Binding ShaderName, TargetNullValue='(none)'}"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,2,0,8" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

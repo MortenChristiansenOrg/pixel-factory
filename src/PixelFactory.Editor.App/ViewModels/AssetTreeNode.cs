@@ -11,6 +11,7 @@ public sealed partial class AssetTreeNode : ObservableObject
     private string _name = "";
 
     public AssetMeta? Asset { get; init; }
+    public bool IsProject => Asset is null;
     public ObservableCollection<AssetTreeNode> Children { get; } = [];
     public bool IsExpanded { get; set; } = true;
 
