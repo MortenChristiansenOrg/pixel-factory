@@ -1,11 +1,156 @@
 <Window x:Class="PixelFactory.Editor.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Pixel Factory" Height="720" Width="1280">
-    <Grid>
-        <TextBlock Text="Pixel Factory Editor"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="24" />
-    </Grid>
+        xmlns:vm="clr-namespace:PixelFactory.Editor.App.ViewModels"
+        Title="{Binding Title}" Height="720" Width="1280"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource TextPrimaryBrush}">
+
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New Project" Click="NewProject_Click" />
+                <MenuItem Header="_Open Project" Click="OpenProject_Click" />
+                <Separator />
+                <MenuItem Header="E_xit" Click="Exit_Click" />
+            </MenuItem>
+            <MenuItem Header="_Asset">
+                <MenuItem Header="_Add Asset..." Click="AddAsset_Click" />
+                <MenuItem Header="_Rename Asset..." Click="RenameAsset_Click" />
+                <MenuItem Header="_Delete Asset" Click="DeleteAsset_Click" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Status Bar -->
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="{Binding StatusText}" />
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Main Content Area -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" MinWidth="150" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" MinWidth="200" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="300" MinWidth="150" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Content Browser Panel -->
+            <Border Grid.Column="0" Style="{StaticResource PanelBorder}">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Style="{StaticResource PanelHeaderBorder}">
+                        <TextBlock Text="Content Browser" Style="{StaticResource PanelHeaderText}" />
+                    </Border>
+                    <TreeView ItemsSource="{Binding TreeRoots}"
+                              SelectedItemChanged="AssetTree_SelectedItemChanged">
+                        <TreeView.Resources>
+                            <FontFamily x:Key="FontAwesome">pack://application:,,,/Fonts/#Font Awesome 7 Free</FontFamily>
+                        </TreeView.Resources>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type vm:AssetTreeNode}"
+                                                      ItemsSource="{Binding Children}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Icon}"
+                                               FontFamily="{StaticResource FontAwesome}"
+                                               Foreground="{Binding IconBrush}"
+                                               FontSize="12" Width="18"
+                                               VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Name}"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Rename..." Click="RenameAsset_Click" />
+                                <MenuItem Header="Delete" Click="DeleteAsset_Click" />
+                            </ContextMenu>
+                        </TreeView.ContextMenu>
+                    </TreeView>
+                </DockPanel>
+            </Border>
+
+            <!-- Left Splitter -->
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" />
+
+            <!-- Viewport Panel -->
+            <Border Grid.Column="2" Style="{StaticResource PanelBorder}">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Style="{StaticResource PanelHeaderBorder}">
+                        <TextBlock Text="Viewport" Style="{StaticResource PanelHeaderText}" />
+                    </Border>
+                    <Grid>
+                        <Border x:Name="ViewportBorder" Background="Black" />
+                        <Border x:Name="ViewportOverlay" Background="Transparent"
+                                MouseLeftButtonDown="Viewport_MouseLeftButtonDown"
+                                MouseMove="Viewport_MouseMove"
+                                MouseLeftButtonUp="Viewport_MouseLeftButtonUp"
+                                SizeChanged="Viewport_SizeChanged" />
+                    </Grid>
+                </DockPanel>
+            </Border>
+
+            <!-- Right Splitter -->
+            <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" />
+
+            <!-- Details Panel -->
+            <Border Grid.Column="4" Style="{StaticResource PanelBorder}">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Style="{StaticResource PanelHeaderBorder}">
+                        <TextBlock Text="Details" Style="{StaticResource PanelHeaderText}" />
+                    </Border>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8">
+                        <Grid Margin="8,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Text="Name" Style="{StaticResource PropertyLabel}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedAssetName}"
+                                       Style="{StaticResource PropertyValue}" />
+
+                            <Border Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource PropertySeparator}" />
+
+                            <TextBlock Grid.Row="2" Text="Type" Style="{StaticResource PropertyLabel}" />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedAssetType}"
+                                       Style="{StaticResource PropertyValue}" />
+
+                            <Border Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource PropertySeparator}" />
+
+                            <TextBlock Grid.Row="4" Text="Vertices" Style="{StaticResource PropertyLabel}" />
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedAssetVertices}"
+                                       Style="{StaticResource PropertyValue}" />
+
+                            <Border Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource PropertySeparator}" />
+
+                            <TextBlock Grid.Row="6" Text="Indices" Style="{StaticResource PropertyLabel}" />
+                            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding SelectedAssetIndices}"
+                                       Style="{StaticResource PropertyValue}" />
+                        </Grid>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
 </Window>

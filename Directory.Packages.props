@@ -14,6 +14,9 @@
     <PackageVersion Include="Vortice.DXGI" Version="3.8.3" />
     <PackageVersion Include="Vortice.D3DCompiler" Version="3.8.3" />
 
+    <!-- MVVM -->
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+
     <!-- Editor -->
     <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
     <PackageVersion Include="AssimpNet" Version="4.1.0" />

@@ -9,4 +9,14 @@ public interface IRenderDevice : IDisposable
     void BeginFrame();
     void EndFrame();
     void Present();
+
+    IBuffer CreateBuffer(BufferDescription desc, ReadOnlySpan<byte> initialData);
+    IPipeline CreatePipeline(ShaderBytecode vertexShader, ShaderBytecode pixelShader);
+    void SetVertexBuffer(IBuffer buffer, int stride);
+    void SetIndexBuffer(IBuffer buffer);
+    void SetConstantBuffer(int slot, IBuffer buffer);
+    void UpdateBuffer(IBuffer buffer, ReadOnlySpan<byte> data);
+    void DrawIndexed(int indexCount, int startIndex, int baseVertex);
+    void SetViewport(int x, int y, int width, int height);
+    byte[] CaptureBackBuffer();
 }

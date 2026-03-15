@@ -31,6 +31,33 @@ public sealed class D3D12RenderDevice : IRenderDevice
         // TODO: swap chain present, fence sync
     }
 
+    public IBuffer CreateBuffer(BufferDescription desc, ReadOnlySpan<byte> initialData) =>
+        throw new NotImplementedException();
+
+    public IPipeline CreatePipeline(ShaderBytecode vertexShader, ShaderBytecode pixelShader) =>
+        throw new NotImplementedException();
+
+    public void SetVertexBuffer(IBuffer buffer, int stride) =>
+        throw new NotImplementedException();
+
+    public void SetIndexBuffer(IBuffer buffer) =>
+        throw new NotImplementedException();
+
+    public void SetConstantBuffer(int slot, IBuffer buffer) =>
+        throw new NotImplementedException();
+
+    public void UpdateBuffer(IBuffer buffer, ReadOnlySpan<byte> data) =>
+        throw new NotImplementedException();
+
+    public void DrawIndexed(int indexCount, int startIndex, int baseVertex) =>
+        throw new NotImplementedException();
+
+    public void SetViewport(int x, int y, int width, int height) =>
+        throw new NotImplementedException();
+
+    public byte[] CaptureBackBuffer() =>
+        throw new NotImplementedException();
+
     public void Dispose()
     {
         // TODO: release COM objects

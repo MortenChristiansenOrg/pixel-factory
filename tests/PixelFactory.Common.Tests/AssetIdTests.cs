@@ -1,4 +1,3 @@
-using PixelFactory.Common;
 using Xunit;
 
 namespace PixelFactory.Common.Tests;

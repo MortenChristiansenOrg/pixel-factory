@@ -7,6 +7,6 @@ public sealed class AssetMeta
 {
     public required AssetId Id { get; init; }
     public required AssetType Type { get; init; }
-    public required string Name { get; init; }
+    public required string Name { get; set; }
     public string? SourcePath { get; init; }
 }

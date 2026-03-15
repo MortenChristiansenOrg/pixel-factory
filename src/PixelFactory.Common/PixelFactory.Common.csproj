@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>PixelFactory.Common</RootNamespace>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
 </Project>

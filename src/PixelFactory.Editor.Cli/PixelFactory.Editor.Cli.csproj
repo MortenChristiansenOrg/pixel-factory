@@ -4,7 +4,6 @@
     <TargetFramework>net10.0-windows</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>PixelFactory.Editor.Cli</RootNamespace>
-    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>

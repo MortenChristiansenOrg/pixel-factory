@@ -5,7 +5,17 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PixelFactory.Editor.App</RootNamespace>
     <UseWPF>true</UseWPF>
+    <!-- WPF generates GeneratedInternalTypeHelper.g.cs that triggers trimmer warnings -->
+    <NoWarn>$(NoWarn);IL2067;IL2075</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Font Awesome 7 Free-Solid-900.otf" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PixelFactory.Editor.Core\PixelFactory.Editor.Core.csproj" />

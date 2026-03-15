@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Color palette first — all control styles reference these via their own merge -->
+        <ResourceDictionary Source="Colors.xaml" />
+
+        <!-- Control styles (each merges Colors.xaml internally for StaticResource resolution) -->
+        <ResourceDictionary Source="Controls/CommonStyles.xaml" />
+        <ResourceDictionary Source="Controls/ScrollBarStyles.xaml" />
+        <ResourceDictionary Source="Controls/ButtonStyles.xaml" />
+        <ResourceDictionary Source="Controls/TextBoxStyles.xaml" />
+        <ResourceDictionary Source="Controls/ComboBoxStyles.xaml" />
+        <ResourceDictionary Source="Controls/MenuStyles.xaml" />
+        <ResourceDictionary Source="Controls/TreeViewStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

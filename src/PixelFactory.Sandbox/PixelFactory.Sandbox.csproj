@@ -4,12 +4,14 @@
     <TargetFramework>net10.0-windows</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>PixelFactory.Sandbox</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PixelFactory.Engine.Core\PixelFactory.Engine.Core.csproj" />
     <ProjectReference Include="..\PixelFactory.Engine.Graphics.D3D11\PixelFactory.Engine.Graphics.D3D11.csproj" />
+    <ProjectReference Include="..\PixelFactory.Editor.Core\PixelFactory.Editor.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using PixelFactory.Engine.Core.ECS;
 using PixelFactory.Engine.Core.Rendering;
 
@@ -16,13 +17,28 @@ public sealed class GameLoop : IDisposable
 
     public GameWorld World => _world;
 
+    public Action? ProcessMessages { get; set; }
+    public Action<GameWorld, float>? OnUpdate { get; set; }
+    public Action<GameWorld>? OnRender { get; set; }
+
     public void Run()
     {
         _running = true;
+        var sw = Stopwatch.StartNew();
+        var lastTime = sw.Elapsed;
+
         while (_running)
         {
+            ProcessMessages?.Invoke();
+
+            var now = sw.Elapsed;
+            var dt = (float)(now - lastTime).TotalSeconds;
+            lastTime = now;
+
+            OnUpdate?.Invoke(_world, dt);
+
             _renderDevice.BeginFrame();
-            // TODO: update systems
+            OnRender?.Invoke(_world);
             _renderDevice.EndFrame();
             _renderDevice.Present();
         }

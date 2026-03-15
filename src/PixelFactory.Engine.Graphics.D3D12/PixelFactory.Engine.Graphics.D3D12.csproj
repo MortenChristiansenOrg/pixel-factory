@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
     <RootNamespace>PixelFactory.Engine.Graphics.D3D12</RootNamespace>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>
