@@ -5,7 +5,7 @@
         <!-- Image preview area -->
         <Border x:Name="PreviewArea" Background="Black" Margin="8">
             <Grid>
-                <!-- Checkerboard background for transparency -->
+                <!-- Background fill for preview area -->
                 <Rectangle Fill="{StaticResource PanelBackgroundBrush}" />
 
                 <!-- Placeholder shown when no image is loaded -->

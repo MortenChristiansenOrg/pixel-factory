@@ -9,9 +9,10 @@
                        Foreground="{StaticResource TextPrimaryBrush}"
                        Margin="0,0,0,8" />
 
-            <!-- Transport controls -->
+            <!-- Transport controls (hidden until playback is implemented) -->
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
-                        HorizontalAlignment="Center" Margin="0,8,0,0">
+                        HorizontalAlignment="Center" Margin="0,8,0,0"
+                        Visibility="Collapsed">
                 <Button Content="Play" Width="60" Margin="2" IsEnabled="False" />
                 <Button Content="Pause" Width="60" Margin="2" IsEnabled="False" />
                 <Button Content="Stop" Width="60" Margin="2" IsEnabled="False" />

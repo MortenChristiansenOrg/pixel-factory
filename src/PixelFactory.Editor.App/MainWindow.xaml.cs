@@ -90,6 +90,10 @@ public partial class MainWindow : Window
                 AssetViewHost.Content = _scriptView;
                 ViewportHeader.Text = "Script Editor";
                 break;
+            default:
+                AssetViewHost.Content = null;
+                ViewportHeader.Text = "Viewport";
+                break;
         }
     }
 
@@ -155,6 +159,7 @@ public partial class MainWindow : Window
         if (sender is not TreeViewItem item || item.DataContext is not AssetTreeNode node) return;
 
         var menu = new ContextMenu();
+        menu.Opened += (_, _) => item.IsSelected = true;
         menu.Items.Add(new MenuItem { Header = "Add Asset..." });
         ((MenuItem)menu.Items[0]!).Click += AddAsset_Click;
 

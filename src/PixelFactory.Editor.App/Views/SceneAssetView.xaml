@@ -14,7 +14,7 @@
                            Foreground="{StaticResource TextSecondaryBrush}"
                            HorizontalAlignment="Center"
                            Margin="0,4,0,0" />
-                <TextBlock Text="{Binding EntityCount, StringFormat='{}{0} entities'}"
+                <TextBlock Text="{Binding EntityCountLabel}"
                            FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
                            HorizontalAlignment="Center"

@@ -144,6 +144,14 @@ public partial class MeshAssetView : UserControl
         _vertexBuffer?.Dispose();
         _indexBuffer?.Dispose();
 
+        if (meshData.Vertices.Length == 0 || meshData.Indices.Length == 0)
+        {
+            _vertexBuffer = null;
+            _indexBuffer = null;
+            _indexCount = 0;
+            return;
+        }
+
         var vertexData = MemoryMarshal.AsBytes(meshData.Vertices.AsSpan());
         _vertexBuffer = device.CreateBuffer(
             new BufferDescription(vertexData.Length, BufferUsage.Vertex), vertexData);
@@ -222,6 +230,7 @@ public partial class MeshAssetView : UserControl
         _indexBuffer = null;
         _constantBuffer = null;
         _pipeline = null;
+        _viewportHost?.Dispose();
         _viewportHost = null;
     }
 }
